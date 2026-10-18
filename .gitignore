@@ -1,0 +1,10 @@
+.vscode/
+*.out
+*.test
+main.c
+*.o
+*.a
+*.tar
+obj/
+archive/
+exe/
