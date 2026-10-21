@@ -5,6 +5,5 @@ main.c
 *.o
 *.a
 *.tar
-obj/
-archive/
-exe/
+printfTester/
+printfTester/*
