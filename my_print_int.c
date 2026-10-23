@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 14:39:08 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/21 16:15:18 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/23 15:46:07 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	my_print_int(int target)
 	ft_putstr_fd(str, 1);
 	num = (int)ft_strlen(str);
 	free(str);
-	return num-1;
+	return (num - 1);
 }

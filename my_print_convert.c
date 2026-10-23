@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 14:29:47 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/23 15:00:22 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/23 15:46:02 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	my_print_convert(void *target, const char *convert)
 	if (address == 0)
 	{
 		ft_putstr_fd("(nil)", 1);
-		return ft_strlen("(nil)")-1;
+		return (ft_strlen("(nil)") - 1);
 	}
 	return (my_print_string("0x") + print_tail(address, convert, 0) + 1);
 }
