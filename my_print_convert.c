@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 14:29:47 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/21 16:19:48 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/23 14:45:39 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	my_print_convert(void *target, const char *convert)
 	address = (size_t)target;
 	if (address == 0)
 	{
-		ft_putchar_fd('0', 1);
-		return (1);
+		ft_putstr_fd("(nil)", 1);
+		return ft_strlen("(nil)")-1;
 	}
 	return (print_tail(address, convert, 0));
 }

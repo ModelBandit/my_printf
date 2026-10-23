@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 10:23:59 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/21 16:18:14 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/23 14:47:12 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_printf(const char * arg, ...)
     spec_count = 0;
     str_start = arg;
 
-    while(str_start != NULL && str_start[i] != '\0')
+    while(str_start != NULL && str_start[i+covert_count] != '\0')
     {
         if(str_start[i+covert_count] == '%')
         {
@@ -44,14 +44,16 @@ int ft_printf(const char * arg, ...)
     }
 
     va_end(ap);
-    return i+spec_count-1;
+    return i+spec_count;
 }
 
 
 static int print_by_type(const char token, va_list vl)
 {
+    void *p_addr;
     int i;
 
+    p_addr = NULL;
     i = 0;
     if(token == 'c')
         ft_putchar_fd(va_arg(vl, int), 1);
@@ -59,13 +61,15 @@ static int print_by_type(const char token, va_list vl)
         i = my_print_string(va_arg(vl, char*));
     else if(token == 'p')
     {
-        ft_putstr_fd("0x", 1);
-        i = 2 + my_print_convert(va_arg(vl, void*), "0123456789abcdef");
+        p_addr = va_arg(vl, void*);
+        if(p_addr != NULL)
+            i += my_print_string("0x") + 1;
+        i += my_print_convert(p_addr, "0123456789abcdef");
     }
     else if(token == 'd' || token == 'i')
         i = my_print_int(va_arg(vl, int));
     else if(token == 'u')
-        i = my_print_convert(va_arg(vl, void*), "0123456789");
+        i = my_print_uint(va_arg(vl, unsigned int));
     else if(token == 'x')
         i = my_print_convert(va_arg(vl, void*), "0123456789abcdef");
     else if(token == 'X')
@@ -82,47 +86,13 @@ static int print_by_type(const char token, va_list vl)
 }
 
 
-#include <stdio.h>
-int main()
-{
-    char *asd = "0x0x0x0x0";
-    char a = 'a';
-    int n = 0;
-    n = printf("zzz%czzz\n", a);
-    printf("char: %d\n", n);
-    n = ft_printf("zzz%czzz\n", a);
-    printf("char: %d\n", n);
-    n = printf("zzz%szzz\n", asd);
-    printf("string: %d\n", n);
-    n = ft_printf("zzz%szzz\n", asd);
-    printf("string: %d\n", n);
-    n = printf("zzz%pzzz\n", asd);
-    printf("point: %d\n", n);
-    n = ft_printf("zzz%pzzz\n", asd);
-    printf("point: %d\n", n);
-    n = 9;
-    n = printf("zzz%dzzz\n", n);
-    printf("dint: %d\n", n);
-    n = ft_printf("zzz%dzzz\n", n);
-    printf("dint: %d\n", n);
-    n = 9;
-    n = printf("zzz%izzz\n", n);
-    printf("int: %d\n", n);
-    n = ft_printf("zzz%izzz\n", n);
-    printf("int: %d\n", n);
-    n = 9;
-    n = printf("zzz%uzzz\n", n);
-    printf("uint: %d\n", n);
-    n = ft_printf("zzz%uzzz\n", n);
-    printf("uint: %d\n", n);
-    n = 9;
-    n = printf("zzz%xzzz\n", n);
-    printf("x: %d\n", n);
-    n = ft_printf("zzz%xzzz\n", n);
-    printf("x: %d\n", n);
-    n = 9;
-    n = printf("zzz%Xzzz\n", n);
-    printf("X: %d\n", n);
-    n = ft_printf("zzz%Xzzz\n", n);
-    printf("X: %d\n", n);
-}
+// #include <stdio.h>
+// int main()
+// {
+//     unsigned int num = 0x7fffffffffffffffL;
+//     int n = 0;
+//     n = printf("%u\n", num);
+//     printf("u: %d\n", n);
+//     n = ft_printf("%u\n", num);
+//     printf("u: %d\n", n);
+// }

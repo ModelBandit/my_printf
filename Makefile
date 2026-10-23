@@ -9,18 +9,23 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar
 ARFLAGS = rcs
 
-SRC = ft_printf.c my_print_convert.c my_print_int.c my_print_utils.c my_print_string.c
+SRC = ft_printf.c \
+my_print_convert.c \
+my_print_int.c \
+my_print_utils.c \
+my_print_string.c \
+my_print_uint.c
 
 OBJ = $(SRC:.c=.o)
 
-all: $(LIBFT) $(NAME)
+all:  $(NAME)
+
+$(NAME): $(LIBFT) $(OBJ)
+	$(AR) $(ARFLAGS) $@ $(OBJ)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
-
-$(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $@ $(OBJ)
-
+	
 %.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
