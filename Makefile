@@ -14,7 +14,8 @@ my_print_convert.c \
 my_print_int.c \
 my_print_utils.c \
 my_print_string.c \
-my_print_uint.c
+my_print_uint.c \
+my_print_hexa.c
 
 OBJ = $(SRC:.c=.o)
 

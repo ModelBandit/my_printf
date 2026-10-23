@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 10:23:59 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/23 14:47:12 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/23 15:12:46 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,26 @@ int ft_printf(const char * arg, ...)
 
 static int print_by_type(const char token, va_list vl)
 {
-    void *p_addr;
     int i;
 
-    p_addr = NULL;
     i = 0;
     if(token == 'c')
         ft_putchar_fd(va_arg(vl, int), 1);
     else if(token == 's')
         i = my_print_string(va_arg(vl, char*));
     else if(token == 'p')
-    {
-        p_addr = va_arg(vl, void*);
-        if(p_addr != NULL)
-            i += my_print_string("0x") + 1;
-        i += my_print_convert(p_addr, "0123456789abcdef");
-    }
+        i += my_print_convert(va_arg(vl, void*), "0123456789abcdef");
     else if(token == 'd' || token == 'i')
         i = my_print_int(va_arg(vl, int));
     else if(token == 'u')
         i = my_print_uint(va_arg(vl, unsigned int));
     else if(token == 'x')
-        i = my_print_convert(va_arg(vl, void*), "0123456789abcdef");
+        i = my_print_hexa(va_arg(vl, unsigned int), "0123456789abcdef");
     else if(token == 'X')
-        i = my_print_convert(va_arg(vl, void*), "0123456789ABCDEF");
+        i = my_print_hexa(va_arg(vl, unsigned int), "0123456789ABCDEF");
     else if(token == '%')
     {
-        ft_putstr_fd("%%", 1);
+        ft_putchar_fd('%', 1);
     }
     else
     {
@@ -89,10 +82,9 @@ static int print_by_type(const char token, va_list vl)
 // #include <stdio.h>
 // int main()
 // {
-//     unsigned int num = 0x7fffffffffffffffL;
 //     int n = 0;
-//     n = printf("%u\n", num);
+//     n = printf("%%\n");
 //     printf("u: %d\n", n);
-//     n = ft_printf("%u\n", num);
+//     n = ft_printf("%%\n");
 //     printf("u: %d\n", n);
 // }

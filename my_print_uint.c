@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 14:29:47 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/23 14:46:45 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/23 15:07:33 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	my_print_uint(unsigned int target)
 {
 	unsigned int	u_integer;
 
-	u_integer = (unsigned int)target;
+	u_integer = target;
 	if (u_integer == 0)
 	{
 		ft_putchar_fd('0', 1);
