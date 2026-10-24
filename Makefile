@@ -30,13 +30,11 @@ my_print_hexa.c
 OBJ = $(SRC:.c=.o) $(LIBFT:.c=.o)
 
 all:  $(NAME)
-	echo $(LIBOBJ)
 
-$(NAME): $(LIBOBJ) $(OBJ)
+$(NAME): $(OBJ)
 	$(AR) $(ARFLAGS) $@ $(OBJ)
 
 %.o: %.c ft_printf.h
-	echo $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 10:23:59 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/23 15:55:19 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/24 11:49:32 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,25 @@ static int	print_by_type(const char token, va_list vl);
 
 int	ft_printf(const char *arg, ...)
 {
-	va_list		ap;
-	int			i;
-	int			covert_count;
-	int			spec_count;
-	const char	*str_start;
+	va_list	ap;
+	int		i;
+	int		covert_count;
+	int		spec_count;
 
 	va_start(ap, arg);
 	i = 0;
 	covert_count = 0;
 	spec_count = 0;
-	str_start = arg;
-	while (str_start != NULL && str_start[i + covert_count] != '\0')
+	while (arg != NULL && arg[i + covert_count] != '\0')
 	{
-		if (str_start[i + covert_count] == '%')
+		if (arg[i + covert_count] == '%')
 		{
-			spec_count += (print_by_type(*ft_strchr("cspdiuxX%", str_start[(i
+			spec_count += (print_by_type(*ft_strchr("cspdiuxX%", arg[(i
 								+ covert_count) + 1]), ap));
 			++covert_count;
 		}
 		else
-		{
-			ft_putchar_fd(str_start[(i + covert_count)], 1);
-		}
+			ft_putchar_fd(arg[(i + covert_count)], 1);
 		++i;
 	}
 	va_end(ap);
