@@ -6,7 +6,7 @@
 /*   By: chchoi <chchoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 10:23:59 by chchoi            #+#    #+#             */
-/*   Updated: 2026/10/24 11:49:32 by chchoi           ###   ########.fr       */
+/*   Updated: 2026/10/29 13:38:32 by chchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_printf(const char *arg, ...)
 			++covert_count;
 		}
 		else
-			ft_putchar_fd(arg[(i + covert_count)], 1);
+			ft_putchar_fd(arg[i + covert_count], 1);
 		++i;
 	}
 	va_end(ap);
@@ -62,8 +62,6 @@ static int	print_by_type(const char token, va_list vl)
 		i = my_print_hexa(va_arg(vl, unsigned int), "0123456789ABCDEF");
 	else if (token == '%')
 		ft_putchar_fd('%', 1);
-	else
-		write(1, "FUCKYOU", 8);
 	return (i);
 }
 
@@ -71,9 +69,11 @@ static int	print_by_type(const char token, va_list vl)
 
 // int	main(void)
 // {
-// 	int n = 0;
-// 	n = printf("%q\n");
+// 	char *s = "asdasd";
+// 	int n = 123456;
+// 	n = printf("%s%d%i%x%p\n", s, n, n, n, &n);
 // 	printf("u: %d\n", n);
-// 	n = ft_printf("%q\n");
+// 	n = 123456;
+// 	n = ft_printf("%s%d%i%x%p\n", s, n, n, n, &n);
 // 	printf("u: %d\n", n);
 // }

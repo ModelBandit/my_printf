@@ -1,7 +1,6 @@
 
 NAME = libftprintf.a
 LIBFT_DIR = libft/
-TEST_DIR = 2026test/
 
 LIBFT_FILE = ft_atoi.c ft_isdigit.c ft_memset.c ft_strnstr.c ft_bzero.c \
 ft_isprint.c ft_strchr.c ft_strrchr.c ft_calloc.c ft_memchr.c \
@@ -47,7 +46,4 @@ fclean: clean
 
 re: fclean all
 
-test:
-	$(MAKE) -C $(TEST_DIR)
-
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re
